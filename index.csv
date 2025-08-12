@@ -1,2 +1,3 @@
 id,title,status,author,date,pr_link
-0001,"Example RFC",Accepted,"Jane Doe",2025-01-15,#1
+0000,"# RFC NNNN: Title",Draft,"Your Name",2025-08-12,#XXX
+0001,"Example RFC",Accepted,"Jane Doe",2025-08-12,#1
