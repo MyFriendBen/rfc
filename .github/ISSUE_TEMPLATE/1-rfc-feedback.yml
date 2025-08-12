@@ -1,0 +1,81 @@
+name: Comment on RFC
+description: Provide feedback on an existing RFC
+title: "[RFC Feedback] RFC-NNNN: "
+labels: ["rfc-feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## RFC Feedback
+        Use this form to provide structured feedback on an existing RFC.
+
+  - type: input
+    id: rfc-number
+    attributes:
+      label: RFC Number
+      description: Which RFC are you commenting on?
+      placeholder: "NNNN"
+    validations:
+      required: true
+
+  - type: input
+    id: rfc-pr
+    attributes:
+      label: RFC Pull Request
+      description: Link to the RFC's pull request
+      placeholder: "https://github.com/org/repo/pull/123"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feedback-type
+    attributes:
+      label: Type of Feedback
+      description: What kind of feedback are you providing?
+      options:
+        - Question/Clarification
+        - Concern/Issue
+        - Suggestion/Improvement
+        - Support/Agreement
+        - Alternative Proposal
+        - Implementation Detail
+    validations:
+      required: true
+
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Feedback Details
+      description: Provide your detailed feedback
+      placeholder: "I have concerns about..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-changes
+    attributes:
+      label: Suggested Changes
+      description: If applicable, what specific changes would address your feedback?
+      placeholder: "Consider modifying the design to..."
+
+  - type: dropdown
+    id: blocking
+    attributes:
+      label: Blocking Concern
+      description: Is this a blocking concern that must be addressed?
+      options:
+        - "Yes - Must be addressed"
+        - "No - Nice to have"
+        - "Unsure - Needs discussion"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I've read the entire RFC
+          required: true
+        - label: My feedback is constructive and specific
+          required: true

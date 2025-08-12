@@ -1,0 +1,18 @@
+# RFC Repository Code Owners
+# These users will be automatically requested for review on RFCs
+
+# Default owners for all RFCs
+* @project-leads @architecture-team
+
+# Specific area owners (examples - customize for your project)
+/rfcs/*frontend*/ @frontend-team
+/rfcs/*backend*/ @backend-team
+/rfcs/*api*/ @api-team
+/rfcs/*security*/ @security-team
+/rfcs/*performance*/ @performance-team
+
+# Process and meta RFCs
+/README.md @project-leads
+/CONTRIBUTING.md @project-leads
+/STATUS.md @project-leads
+/.github/ @devops-team

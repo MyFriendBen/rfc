@@ -1,0 +1,67 @@
+name: Update RFC Index
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'rfcs/**'
+      - 'archive/**'
+  workflow_dispatch:
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Generate RFC index
+        run: |
+          echo "id,title,status,author,date,pr_link" > index.csv
+          
+          # Function to extract RFC metadata
+          extract_metadata() {
+            local file=$1
+            local dir=$(dirname "$file")
+            local rfc_num=$(basename "$dir" | cut -d'-' -f1)
+            local title=$(grep "^# RFC" "$file" | head -1 | sed 's/# RFC [0-9]*: //')
+            local status=$(grep "^Status:" "$file" | head -1 | sed 's/Status: //' || echo "Draft")
+            local author=$(grep "^Author:" "$file" | head -1 | sed 's/Author: //' || echo "Unknown")
+            local date=$(git log -1 --format=%ai -- "$file" | cut -d' ' -f1)
+            local pr_link=$(grep "^PR:" "$file" | head -1 | sed 's/PR: //' || echo "")
+            
+            echo "$rfc_num,\"$title\",$status,\"$author\",$date,$pr_link"
+          }
+          
+          # Process active RFCs
+          for rfc in rfcs/[0-9]*/README.md; do
+            if [ -f "$rfc" ]; then
+              extract_metadata "$rfc" >> index.csv
+            fi
+          done
+          
+          # Process archived RFCs
+          for rfc in archive/*/*/README.md; do
+            if [ -f "$rfc" ]; then
+              extract_metadata "$rfc" >> index.csv
+            fi
+          done
+          
+          # Sort by RFC number
+          (head -1 index.csv; tail -n +2 index.csv | sort -t',' -k1 -n) > index.tmp
+          mv index.tmp index.csv
+      
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.csv
+          if git diff-index --quiet HEAD; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update RFC index [skip ci]"
+            git push
+          fi

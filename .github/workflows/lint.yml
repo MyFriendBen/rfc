@@ -1,0 +1,73 @@
+name: Lint RFCs
+
+on:
+  pull_request:
+    paths:
+      - 'rfcs/**'
+      - '**.md'
+      - '**.yml'
+      - '**.yaml'
+
+jobs:
+  lint-markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Lint Markdown files
+        uses: DavidAnson/markdownlint-cli2-action@v11
+        with:
+          globs: |
+            **/*.md
+            !node_modules
+            !archive
+      
+      - name: Check RFC front matter
+        run: |
+          for rfc in rfcs/[0-9]*/README.md; do
+            if [ -f "$rfc" ]; then
+              echo "Checking $rfc"
+              # Check for required front matter fields
+              if ! grep -q "^# RFC" "$rfc"; then
+                echo "Error: $rfc missing RFC title"
+                exit 1
+              fi
+              if ! grep -q "^## Summary" "$rfc"; then
+                echo "Error: $rfc missing Summary section"
+                exit 1
+              fi
+              if ! grep -q "^## Motivation" "$rfc"; then
+                echo "Error: $rfc missing Motivation section"
+                exit 1
+              fi
+            fi
+          done
+
+  lint-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Validate YAML
+        run: |
+          sudo apt-get install -y yamllint
+          yamllint -d relaxed .github/
+
+  check-rfc-number:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Check RFC number sequence
+        run: |
+          # Get all RFC numbers
+          numbers=$(ls -d rfcs/[0-9]*/ 2>/dev/null | sed 's/rfcs\///' | sed 's/-.*//' | sort -n)
+          
+          # Check for duplicates
+          duplicates=$(echo "$numbers" | uniq -d)
+          if [ -n "$duplicates" ]; then
+            echo "Error: Duplicate RFC numbers found: $duplicates"
+            exit 1
+          fi
+          
+          echo "RFC numbers are valid"

@@ -1,0 +1,105 @@
+name: Start an RFC
+description: Propose a new RFC for discussion
+title: "[RFC Proposal] "
+labels: ["rfc-proposal", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## RFC Proposal
+        Use this form to propose a new RFC. This will help gauge interest before writing a full RFC.
+
+  - type: input
+    id: title
+    attributes:
+      label: Proposed RFC Title
+      description: A clear, descriptive title for your RFC
+      placeholder: "Example: Add WebSocket Support for Real-time Updates"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Brief overview of what you're proposing (2-3 sentences)
+      placeholder: "This RFC proposes adding WebSocket support to enable real-time updates..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why is this change needed? What problem does it solve?
+      placeholder: "Currently, users must refresh to see updates. This causes..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: basic-design
+    attributes:
+      label: Basic Design
+      description: High-level overview of your proposed solution
+      placeholder: "The solution would involve..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope of Impact
+      description: What parts of the system would this affect?
+      multiple: true
+      options:
+        - API
+        - Frontend
+        - Backend
+        - Database
+        - Infrastructure
+        - Documentation
+        - Testing
+        - Performance
+        - Security
+        - Developer Experience
+    validations:
+      required: true
+
+  - type: dropdown
+    id: breaking-change
+    attributes:
+      label: Breaking Change
+      description: Would this be a breaking change?
+      options:
+        - "Yes"
+        - "No"
+        - "Possibly"
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other approaches have you considered?
+      placeholder: "Alternative approaches include..."
+
+  - type: textarea
+    id: prior-art
+    attributes:
+      label: Prior Art
+      description: Are there existing examples or implementations elsewhere?
+      placeholder: "Similar features exist in..."
+
+  - type: checkboxes
+    id: commitment
+    attributes:
+      label: Commitment
+      description: Please confirm the following
+      options:
+        - label: I'm willing to write the full RFC if there's interest
+          required: true
+        - label: I've searched existing RFCs and issues
+          required: true
+        - label: I'm prepared to engage with feedback
+          required: true

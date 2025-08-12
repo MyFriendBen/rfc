@@ -1,0 +1,62 @@
+# Label configuration for RFC repository
+# Can be synced using github-label-sync or similar tools
+
+- name: rfc-proposal
+  color: "0052CC"
+  description: "New RFC proposal"
+
+- name: rfc-draft
+  color: "FBCA04"
+  description: "RFC in draft state"
+
+- name: rfc-discussion
+  color: "D93F0B"
+  description: "RFC open for discussion"
+
+- name: rfc-fcp
+  color: "B60205"
+  description: "RFC in Final Comment Period"
+
+- name: rfc-accepted
+  color: "0E8A16"
+  description: "RFC has been accepted"
+
+- name: rfc-implemented
+  color: "5319E7"
+  description: "RFC has been implemented"
+
+- name: rfc-rejected
+  color: "E4E669"
+  description: "RFC has been rejected"
+
+- name: rfc-withdrawn
+  color: "FFFFFF"
+  description: "RFC withdrawn by author"
+
+- name: rfc-superseded
+  color: "CFD3D7"
+  description: "RFC superseded by another"
+
+- name: rfc-feedback
+  color: "006B75"
+  description: "Feedback on an RFC"
+
+- name: breaking-change
+  color: "D93F0B"
+  description: "RFC proposes breaking changes"
+
+- name: needs-triage
+  color: "E4E669"
+  description: "Needs initial triage"
+
+- name: question
+  color: "D876E3"
+  description: "Question about RFC process"
+
+- name: blocked
+  color: "B60205"
+  description: "RFC is blocked"
+
+- name: ready-for-review
+  color: "0E8A16"
+  description: "RFC ready for review"
