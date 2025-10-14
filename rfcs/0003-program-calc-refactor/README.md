@@ -130,8 +130,11 @@ class IlMedicaidBenefitAmounts(MedicaidBenefitAmounts):
     SSI_RECIPIENT = 474
     AGED = 474
     DISABLED = 474
+```
 
-# Examples w/ PE Value + Adjustment Pattern  
+```python
+# programs/programs/data/nslp_benefits.py 
+# Example Data if using PE Value + Adjustment Pattern  
 class NslpBenefitAmounts:  
     """Federal defaults"""  
     tier_1_amount = 935  
