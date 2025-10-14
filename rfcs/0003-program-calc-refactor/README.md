@@ -468,7 +468,7 @@ Each phase can be done incrementally without breaking existing functionality.
 
 ## Open Questions
 
-- Should the factory registry be auto-discovered or explicitly declared?
+- How do we incorporate the state-level mixins?
 
 ## Alternatives Considered
 
