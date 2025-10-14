@@ -1,7 +1,7 @@
 # RFC 0003: Program Calculator Architecture Refactor
 
 Status: Draft
-Author: [Your Name]
+Author: Caton Brewster
 Created: 2025-10-14
 PR: [TBD]
 
