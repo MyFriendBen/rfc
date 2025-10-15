@@ -422,44 +422,46 @@ def test_medicaid_calculation():
 - Integration tests with mock API responses
 - Regression tests for state-specific calculations
 
-## Documentation
+## Documentation Updates
 
-Recommended Documentation:
-
-- Developer guide explaining the new architecture
 - Migration guide for adding new states
-- Code examples for each component type
-- Architecture diagrams showing component relationships
 - Testing guide with examples
 - Update onboarding documentation
 
 ## Rollout Plan
 
-### Phase 1: Create Infrastructure
-- Create `PolicyEngineClient` wrapper around existing `Sim`
-- Create factory pattern skeleton
-- Update orchestration to support new pattern alongside old
-
-### Phase 2: Extract Data
-- Extract data classes for all state benefit amounts
-- Move benefit amounts from calculator classes to data classes
+### Phase 1: Extract Data
+- Create new directory structure outlined here separate from existing programs directory
+- Extract data classes for all state benefit amounts and store in new programs directory
+- Move all benefit amounts from existing calculator classes to data classes
+- Update existing calculator classes to use new data classes
 - Verify no regression in calculations
 
-### Phase 3: Create Config Registry
-- Create config registry for dependencies
-- Move PE configuration from calculators to config classes
+### Phase 2: Create Config Registry
+- Create config registry for dependencies in new programs directory
+- Move PE configuration from existing calculators to config classes
+- Update existing calculator classes to use new config classes
+- Verify no regression in calculations
+
+### Phase 3: Create Infrastructure
+- Create `PolicyEngineClient` wrapper around existing `Sim`
+- Create factory pattern skeleton
+- Build orchestration in new programs directory to support new pattern
 
 ### Phase 4: Refactor Calculators
-- Refactor calculators to use composition
+- Build new calculators in new program directory that use composition
 - Start with one program (e.g., Medicaid) across all states
-- Verify calculations match previous implementation
+- Set up verification step that verifies new calculations match previous implementation
 
 ### Phase 5: Complete Migration
-- Migrate remaining programs
+- Build out remaining programs
+- Have both calculators running for some time
+
+### Phase 6: Contract
 - Remove old calculator classes
 - Clean up obsolete code
 
-### Phase 6: Add Testing
+### Phase 7: Add Testing
 - Add comprehensive unit tests for all calculators
 - Add integration tests with mock API
 - Document testing patterns
@@ -469,6 +471,8 @@ Each phase can be done incrementally without breaking existing functionality.
 ## Open Questions
 
 - How do we incorporate the state-level mixins?
+- How do we safely roll out? One idea above but to discuss....
+    - One concern is calling the PE API twice but can we use the new client in existing architecture?
 
 ## Alternatives Considered
 
