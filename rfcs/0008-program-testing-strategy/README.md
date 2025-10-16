@@ -1,9 +1,9 @@
 # RFC 0008: Program Testing Strategy
 
-Status: Discussion
-Author: Patrick Wey
-Created: 2025-10-15
-PR: [#6](https://github.com/MyFriendBen/rfc/pull/6)
+- Status: Discussion
+- Author: Patrick Wey
+- Created: 2025-10-15
+- PR: [#6](https://github.com/MyFriendBen/rfc/pull/6)
 
 ## Summary
 
