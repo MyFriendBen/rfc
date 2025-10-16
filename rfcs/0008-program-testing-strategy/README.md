@@ -52,7 +52,7 @@ Ues existing patterns to write a limited number smoke tests per white label conf
 
 ## Rollout Plan
 
-## Phase 1
+### Phase 1
 - Ensure all tests run in CI
     * Add GH workflow to run BE test suite
     * Add GH workflow to run FE unit tests
@@ -65,7 +65,7 @@ Ues existing patterns to write a limited number smoke tests per white label conf
     * Add `vcrpy` for API fixture generation
     * Add fixture refresh automation
 
-## Phase 2
+### Phase 2
 - Enforce testing coverage requirement for new code
 - Add unit tests for core FE logic (not program/white-label specific)
 - Translate validations into tests (using TX as a guide)
