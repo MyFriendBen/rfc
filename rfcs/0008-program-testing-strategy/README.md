@@ -73,6 +73,10 @@ Code coverage reports are not a substitute for a team culture that values testin
 - Translate validations into tests (using TX as a guide)
 - Implement E2E test data cleanup job
 
+### Phase 3
+- Use coverage reports to identify and fill in gaps in existing test coverage
+- Enforce a codebase wide test coverage goal and/or threshold
+
 ## Open Questions
 
 1. **Fixture refresh cadence**: Nightly vs. weekly? Weekly reduces API load but may miss breaking changes sooner.
