@@ -27,7 +27,7 @@ Implement a testing strategy that emphasizes unit testing (Unit > Integration > 
 
 ### Backend Testing
 
-**Unit Tests**: Test program eligibility and value calculation logic in isolation. Record PolicyEngine API responses with `vcrpy` for deterministic, fast tests without external dependencies.
+**Unit Tests**: Test program eligibility and value calculation logic in isolation.
 
 **Integration Tests**: Test API endpoints, multi-model interactions, and service layer operations. Use `vcrpy` fixtures for PolicyEngine calls. Verify correct request formation and response handling.
 
@@ -50,50 +50,33 @@ Ues existing patterns to write a limited number smoke tests per white label conf
 - Frontend: Istanbul/nyc (existing)
 - CI: CodeCov (free for open source) for tracking trends and (optionally) README badges
 
-**Enforcement**:
-- Phase 1: Report coverage without enforcement thresholds. Establish baseline and identify gaps.
-- Phase 2: Enforce minimum coverage thresholds for new code (e.g. target: 90% for program logic). Codebase-wide threshold TBD based on Phase 1 data.
-
-## User Experience
-
-### Before
-Developers add programs without standardized testing requirements. Bugs discovered in production or during manual QA cycles.
-
-### After
-Developers follow testing checklist when adding programs:
-1. Write unit tests for eligibility/value logic
-2. Add/Edit integration tests for API endpoints
-3. Add/Edit E2E smoke test for program white label
-4. CI validates coverage meets thresholds before merge
-
 ## Rollout Plan
 
-**Phase 1**:
-- Fix any currently failing tests
-- Add FE unit test coverage for core program-related business logic
-- Set up coverage tooling (`coverage.py`, CodeCov integration)
-- Add GH actions run all FE/BE tests
-- Begin adding tests to one example program as reference
-- Implement fixture refresh automation
+## Phase 1
+- Ensure all tests run in CI
+    * Add GH workflow to run BE test suite
+    * Add GH workflow to run FE unit tests
+    * Fix/Comment out existing test failures
+- Add coverage tooling
+    * Add `coverage.py` for BE coverage reporting
+    * Add GH workflow to upload BE coverage report to CodeCov
+    * Add GH workflow to upload FE coverage report to CodeCov
+- Add TX programs using testing strategy
+    * Add `vcrpy` for API fixture generation
+    * Add fixture refresh automation
 
-**Phase 2**:
-- Add test data cleanup job
-- Require testing for all new programs
-- Evaluate baseline metrics and set Phase 2 thresholds
-- Enforce coverage requirements
-
-**Success Metrics**:
-- Coverage trending upward month-over-month
-- New programs ship with (e.g.) 90%+ test coverage
+## Phase 2
+- Enforce testing coverage requirement for new code
+- Add unit tests for core FE logic (not program/white-label specific)
+- Translate validations into tests (using TX as a guide)
+- Implement E2E test data cleanup job
 
 ## Open Questions
 
 1. **Fixture refresh cadence**: Nightly vs. weekly? Weekly reduces API load but may miss breaking changes sooner.
 2. **Test data cleanup frequency**: How often should we purge E2E test records from dev/staging databases?
-3. **Phase 2 coverage threshold**: What's realistic for codebase-wide minimum? 80%?
-4. **Retrofit priority**: Should we prioritize adding tests to high-traffic programs even if not actively modifying them?
-5. **Validations**: How do our validations play into this? IMO they still have a place as staging/production smoke tests configurable by non-technical users, but there's probably a lot of overlap
-6. **Reflect**: Do we want to keep this around? I say no. It's expensive and we now have exclusively developers who don't know the tool maintaining these no-code tests.
+3. **Phase 2 coverage threshold**: What's realistic for new code and a codebase-wide minimum?
+4. **Reflect**: Do we want to keep this around? I say no. It's expensive and we now have exclusively developers who don't know the tool maintaining these no-code tests.
 
 ## References
 
