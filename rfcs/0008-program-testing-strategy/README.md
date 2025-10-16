@@ -68,10 +68,11 @@ Code coverage reports are not a substitute for a team culture that values testin
     * Add fixture refresh automation
 
 ### Phase 2
+- Implement E2E test data cleanup job
 - Enforce testing coverage requirement for new code
 - Add unit tests for core FE logic (not program/white-label specific)
 - Translate validations into tests (using TX as a guide)
-- Implement E2E test data cleanup job
+- Evaluate Reflect tests and translate into E2E/integration tests as necessary
 
 ### Phase 3
 - Use coverage reports to identify and fill in gaps in existing test coverage
