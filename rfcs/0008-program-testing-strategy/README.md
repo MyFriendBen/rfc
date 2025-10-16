@@ -21,7 +21,7 @@ As we scale our screener, program additions are one of our primary feature devel
 
 ## Proposal
 
-Implement a testing strategy that emphasizes unit testing (Unit > Integration > E2E) and with specific standards for backend and frontend code. Use fixture-based testing to isolate external API dependencies (PolicyEngine) and enable fast, reliable test execution.
+Implement a testing strategy that emphasizes unit testing (Unit > Integration > E2E) and with specific standards for backend and frontend code. Use fixture-based testing to isolate external API dependencies (PolicyEngine) and enable fast, reliable test execution. Use code coverage reports to evaluate progress.
 
 ## Implementation
 
@@ -41,9 +41,11 @@ There isn't much (if any) FE code added per program, but there are a few core be
 
 ### E2E Testing
 
-Ues existing patterns to write a limited number smoke tests per white label configuration. Tests run against dev/staging databases without fixtures to catch integration issues. Implement a periodic cleanup job to remove test records.
+Use existing patterns to write a limited number smoke tests per white label configuration. Tests run against dev/staging databases without fixtures to catch integration issues. Implement a periodic cleanup job to remove test records.
 
 ### Code Coverage
+
+Code coverage reports are not a substitute for a team culture that values testing. They are, however, a tool we can use to gauge progress, raise concerns, and guide conversation.
 
 **Tools**:
 - Backend: `coverage.py` for Python coverage reporting
