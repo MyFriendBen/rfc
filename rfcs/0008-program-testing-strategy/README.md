@@ -1,9 +1,9 @@
-# RFC 0003: Program Testing Strategy
+# RFC 0008: Program Testing Strategy
 
-Status: Draft
+Status: Discussion
 Author: Patrick Wey
 Created: 2025-10-15
-PR: #XXX
+PR: [#6](https://github.com/MyFriendBen/rfc/pull/6)
 
 ## Summary
 
@@ -62,22 +62,22 @@ Developers add programs without standardized testing requirements. Bugs discover
 ### After
 Developers follow testing checklist when adding programs:
 1. Write unit tests for eligibility/value logic
-3. Add/Edit integration tests for API endpoints
-4. Add/Edit E2E smoke test for program white label
-5. CI validates coverage meets thresholds before merge
+2. Add/Edit integration tests for API endpoints
+3. Add/Edit E2E smoke test for program white label
+4. CI validates coverage meets thresholds before merge
 
 ## Rollout Plan
 
 **Phase 1**:
+- Fix any currently failing tests
+- Add FE unit test coverage for core program-related business logic
 - Set up coverage tooling (`coverage.py`, CodeCov integration)
-- Create developer documentation
-- Establish baseline coverage metrics
-- Implement fixture refresh automation
-- Add test data cleanup job
+- Add GH actions run all FE/BE tests
 - Begin adding tests to one example program as reference
-- Implement coverage reporting (no enforcement)
+- Implement fixture refresh automation
 
 **Phase 2**:
+- Add test data cleanup job
 - Require testing for all new programs
 - Evaluate baseline metrics and set Phase 2 thresholds
 - Enforce coverage requirements
