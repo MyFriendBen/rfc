@@ -1,4 +1,5 @@
 id,title,status,author,date,pr_link
 0000,"# RFC NNNN: Title",Draft,"Your Name",2025-10-21,#XXX
 0001,"Example RFC",Accepted,"Jane Doe",2025-10-21,#1
+0003,"Validations for TDD",Draft,"Katie Brey, Sonali Bedge",2025-10-21,#XXX
 0004,"Multi-Tenant Analytics Platform for MFB Screening Data",Draft,"Katie Brey",2025-10-21,TODO
